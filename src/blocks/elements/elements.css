@@ -4,6 +4,7 @@
   grid-gap: 18px;
   max-width: 882px;
   margin: 52px auto 0;
+  min-height: 50vh;
 }
 
 @media screen and (max-width: 890px) {

@@ -1,127 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Mesto</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="третий проект Артем Князева в ЯП">
+  <meta name="keywords" content="html, css, js">
+  <meta name="author" content="Артем Князев">
+</head>
+<body>
+  <div id="root"></div>
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <div class="page">
-      <header class="header">
-        <a href="#" class="header__link">
-          <img src="./images/header-logo.svg" alt="логотип Mesto" class="header__logo">
-        </a>
-      </header>
-      <main class="content">
-        <section class="profile">
-          <button class="profile__avatar">
-            <img src="#" alt="#" class="profile__avatar-img" name="avatar"></img>
-          </button>
-          <div class="profile__info">
-            <h1 class="profile__name"></h1>
-            <button type="button" aria-label="Редактировать" class="profile__edit-button"></button>
-            <p class="profile__status"></p>
-          </div>
-          <button type="button" aria-label="Добавить" class="profile__add-button"></button>
-        </section>
-        <section class="elements"></section>
-  
-      </main>
-      <footer class="footer">
-        <p class="footer__item">&#169; 2020 Mesto Russia</p>
-      </footer>
-  
-      <section class="popup popup_profile">
-        <form name="profile-popup" novalidate method="POST" action="#" class="popup__container popup__container_form popup_container_type_edit">
-          <button type="button" aria-label="Закрыть" class="popup__close popup__close_type_profile"></button>
-          <h3 class="popup__title">Редактировать профиль</h3>
-  
-          <input id="name-input" type="text" placeholder="Имя" name="name" minlength="2" maxlength="40" class="popup__field popup__field_type_name" required>
-          <span id="name-input-error" class="popup__field-error"></span>
-  
-          <input id="status-input" type="text" placeholder="Статус" name="about" minlength="2" maxlength="200" class="popup__field popup__field_type_status" required>
-          <span id="status-input-error" class="popup__field-error"></span>
-  
-          <button type="submit" class="popup__save popup__save_type_edit">Сохранить</button>
-        </form>
-      </section>
-  
-      <section class="popup popup_addcard">
-        <form name="edit-popup" novalidate method="POST" action="#" class="popup__container popup__container_form popup__container_type_add">
-          <button type="button" aria-label="Закрыть" class="popup__close popup__close_type_cards"></button>
-          <h3 class="popup__title">Новое место</h3>
-  
-          <input id="title-input" type="text" placeholder="Название" name="name" minlength="1" maxlength="30" class="popup__field popup__field_type_title" required>
-          <span id="title-input-error" class="popup__field-error"></span>
-  
-          <input id="link-input" type="url" placeholder="Ссылка на картинку" name="link" class="popup__field popup__field_type_link" required>
-          <span id="link-input-error" class="popup__field-error"></span>
-  
-          <button type="submit" class="popup__save popup__save_type_add popup__save_inactive" disabled>Создать</button>
-        </form>
-      </section>
-  
-      <section class="popup popup_image">
-        <div class="popup__container popup__container_type_image">
-          <button type="button" aria-label="Закрыть" class="popup__close popup__close_type_image"></button>
-          <img src="#" alt="" class="popup__capture">
-          <h4 class="popup__titile popup__titile_type_image"></h4>
-        </div>
-      </section>
-  
-      <section class="popup popup_delete">
-        <form name="delete-popup" novalidate action="#" class="popup__container popup__container_form popup__container_type_delete">
-          <button type="button" aria-label="Закрыть" class="popup__close popup__close_type_delete"></button>
-          <h3 class="popup__title">Вы уверены?</h3>
-          <button type="submit" class="popup__save popup__save_type_delete">Да</button>
-        </form>
-      </section>
-  
-      <section class="popup popup_avatar">
-        <form name="avatar-popup" novalidate action="#" class="popup__container popup__container_form">
-          <button type="button" aria-label="Закрыть" class="popup__close popup__close_type_avatar"></button>
-          <h3 class="popup__title">Обновить аватар</h3>
-          <input id="title-input" type="text" placeholder="Ссылка на изображение" name="avatar" minlength="1" class="popup__field popup__field_type_avatar" required>
-          <button type="submit" class="popup__save popup__save_type_avatar">Сохранить</button>
-        </form>
-      </section>
-  
-      <template class="elements-template">
-        <div class="element">
-          <img src="#" alt="" class="element__image">
-          <button type="button" class="element__delete"></button>
-          <div class="element__title">
-            <h3 class="element__text"></h3>
-            <div class="element__likes">
-              <button type="button" class="element__like"></button>
-              <div class="element__like-count"></div>
-            </div>
-          </div>
-        </div>
-      </template>
-    </div>
-  </body>
+</body>
 </html>
