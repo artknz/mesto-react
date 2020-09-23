@@ -3,12 +3,14 @@ import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
 import PopupWithForm from './PopupWithForm';
+import ImagePopup from './ImagePopup';
 
 export default function App() {
 
   const[isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
   const[isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
   const[isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
+  const[selectedCard, setSelectedCard] = React.useState(null);
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
@@ -26,6 +28,7 @@ export default function App() {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
+    setSelectedCard(null);
   }
 
   return (
@@ -35,6 +38,7 @@ export default function App() {
         onEditProfile={handleEditProfileClick}
         onAddPlace={handleAddPlaceClick}
         onEditAvatar={handleEditAvatarClick}
+        onCardClick={setSelectedCard}
       />
       <Footer />
       <PopupWithForm
@@ -74,6 +78,11 @@ export default function App() {
         <input id="link-input" type="url" placeholder="Ссылка на картинку" name="link" className="popup__field popup__field_type_link" required />
         <span id="link-input-error" className="popup__field-error" />
       </PopupWithForm>
+
+      <ImagePopup
+        card={selectedCard}
+        onClose={closeAllPopups}
+      />
     </div>
   );
 }

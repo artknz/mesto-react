@@ -1,11 +1,12 @@
 import React from 'react';
 import {api} from '../utils/api.js';
+import Card from './Card';
 
-export default function Main({ onEditProfile, onAddPlace, onEditAvatar}) {
+export default function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick}) {
   const[userAvatar, setUserAvatar] = React.useState('');
   const[userName, setUserName] = React.useState('');
   const[userDescription, setUserDescription] = React.useState('');
-  const[cards, setCards] = React.useState('');
+  const[cards, setCards] = React.useState([]);
 
   React.useEffect(() => {
     Promise.all([api.getInitialCards(), api.getUserInfo()]).then(
@@ -31,21 +32,7 @@ export default function Main({ onEditProfile, onAddPlace, onEditAvatar}) {
         </div>
         <button onClick={onAddPlace} type="button" aria-label="Добавить" className="profile__add-button" />
       </section>
-      <section className="elements" />
-
-      <template className="elements-template">
-        <div className="element">
-          <img src="#" alt="" className="element__image" />
-          <button type="button" className="element__delete" />
-          <div className="element__title">
-            <h3 className="element__text" />
-            <div className="element__likes">
-              <button type="button" className="element__like" />
-              <div className="element__like-count" />
-            </div>
-          </div>
-        </div>
-      </template>
+      <section className="elements">{cards.map(card => <Card key={card._id} card={card} onCardClick={onCardClick} />)}</section>
     </main>
   )
 }
