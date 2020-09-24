@@ -1,7 +1,6 @@
 import React from 'react';
 
-export default function Card(props) {
-  const { card, onCardClick } = props;
+export default function Card({ card, onCardClick }) {
 
   const handleCardClick = () => {
     onCardClick(card);
