@@ -10,6 +10,7 @@
   cursor: pointer;
   margin-top: 18px;
   margin-left: -34.3px;
+  visibility: hidden;
 }
 
 .element__delete:hover {
