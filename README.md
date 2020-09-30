@@ -1,7 +1,7 @@
 # Mesto Russia (React)
 
 ### Описание
-Порт проекта [Mesto Russia](https://artknz.github.io/mesto/index.html) на React
+Порт проекта Mesto Russia на React
 
 ### Инструкиця
 **Ссылка на проект -**

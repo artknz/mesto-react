@@ -18,7 +18,7 @@ export default class Api {
     .then(this._statusResponse);
   }
 
-  addNewCard(name, link) {
+  addNewCard({name, link}) {
     return fetch(`${this.baseUrl}/cards`, {
       method: 'POST',
       headers: this.headers,
