@@ -4,6 +4,7 @@ import Main from './Main';
 import Footer from './Footer';
 import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
+import EditProfilePopup from './EditProfilePopup';
 import {api} from '../utils/api.js';
 import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
 
@@ -26,6 +27,13 @@ export default function App() {
 
   function handleAddPlaceClick() {
     setIsAddPlacePopupOpen(true);
+  }
+
+  function handleUpdateUser(user) {
+    api.editUserInfo(user).then((data) => {
+      setCurrentUser(data)
+    });
+    closeAllPopups()
   }
 
   function closeAllPopups() {
@@ -63,19 +71,7 @@ export default function App() {
         <input id="title-input" type="text" placeholder="Ссылка на изображение" name="avatar" minLength="1" className="popup__field popup__field_type_avatar" required />
       </PopupWithForm>
 
-      <PopupWithForm
-        name='profile'
-        title='Редактировать профиль'
-        buttonText='Сохранить'
-        isOpen={isEditProfilePopupOpen}
-        onClose={closeAllPopups}
-      >
-        <input id="name-input" type="text" placeholder="Имя" name="name" minLength="2" maxLength="40" className="popup__field popup__field_type_name" required />
-        <span id="name-input-error" className="popup__field-error" />
-
-        <input id="status-input" type="text" placeholder="Статус" name="about" minLength="2" maxLength="200" className="popup__field popup__field_type_status" required />
-        <span id="status-input-error" className="popup__field-error" />
-      </PopupWithForm>
+      <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser}/>
 
       <PopupWithForm
         name='addcard'

@@ -30,17 +30,9 @@ export default class Api {
     .then(this._statusResponse);
   }
 
-  likeCard(id) {
+  changeLikeCardStatus(id, like) {
     return fetch(`${this.baseUrl}/cards/likes/${id}`, {
-      method: 'PUT',
-      headers: this.headers,
-    })
-    .then(this._statusResponse);
-  }
-
-  deleteLikeCard(id) {
-    return fetch(`${this.baseUrl}/cards/likes/${id}`, {
-      method: 'DELETE',
+      method: like ? 'PUT' : 'DELETE',
       headers: this.headers,
     })
     .then(this._statusResponse);
@@ -61,7 +53,7 @@ export default class Api {
     .then(this._statusResponse);
   }
 
-  editUserInfo(name, about) {
+  editUserInfo({name, about}) {
     return fetch(`${this.baseUrl}/users/me`, {
       method: 'PATCH',
       headers: this.headers,
