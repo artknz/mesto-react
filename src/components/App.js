@@ -5,6 +5,7 @@ import Footer from './Footer';
 import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
 import EditProfilePopup from './EditProfilePopup';
+import EditAvatarPopup from './EditAvatarPopup';
 import {api} from '../utils/api.js';
 import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
 
@@ -29,11 +30,18 @@ export default function App() {
     setIsAddPlacePopupOpen(true);
   }
 
-  function handleUpdateUser(user) {
-    api.editUserInfo(user).then((data) => {
+  function handleUpdateUser(data) {
+    api.editUserInfo(data).then((data) => {
       setCurrentUser(data)
+      closeAllPopups()
     });
-    closeAllPopups()
+  }
+
+  function handleUpdateAvatar(data) {
+    api.editUserAvatar(data).then((data) => {
+      setCurrentUser(data)
+      closeAllPopups()
+    });
   }
 
   function closeAllPopups() {
@@ -61,15 +69,8 @@ export default function App() {
         onCardClick={setSelectedCard}
       />
       <Footer />
-      <PopupWithForm
-        name='avatar'
-        title='Обновить аватар'
-        buttonText='Сохранить'
-        isOpen={isEditAvatarPopupOpen}
-        onClose={closeAllPopups}
-      >
-        <input id="title-input" type="text" placeholder="Ссылка на изображение" name="avatar" minLength="1" className="popup__field popup__field_type_avatar" required />
-      </PopupWithForm>
+
+      <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
 
       <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser}/>
 
